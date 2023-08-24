@@ -6,14 +6,14 @@
             System.out.println(low+" "+high+" "+mid);
             if(nums[mid] == target)
                 return mid;
-            else if(nums[mid]>=nums[0]){
-                if(target>=nums[0] && target < nums[mid])
+            else if(nums[mid]>=nums[low]){
+                if(target>=nums[low] && target < nums[mid])
                     high = mid-1;
                 else
                     low = mid+1;
             }
             else{
-                if(target>nums[mid] && target<=nums[nums.length-1])
+                if(target>nums[mid] && target<=nums[high])
                     low = mid+1;
                 else
                     high = mid-1;
