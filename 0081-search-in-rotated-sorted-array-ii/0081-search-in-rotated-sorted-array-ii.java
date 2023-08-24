@@ -9,17 +9,21 @@ class Solution {
                 low++;
                 continue;
             }
-            if(nums[mid]>nums[low]){
+            if(nums[mid] == nums[high]){
+                high--;
+                continue;
+            }
+            else if(nums[mid]>nums[low]){
                 if(target>=nums[low] && target < nums[mid])
                     high = mid-1;
                 else
                     low = mid+1;
             }
-            else{
-                if(target>nums[mid] && target <= nums[high])
+            else if(nums[mid]<nums[high]){
+                if(target<=nums[high] && target>nums[mid])
                     low = mid+1;
                 else
-                    high = mid - 1;
+                    high = mid-1;
             }
         }
         return false;
