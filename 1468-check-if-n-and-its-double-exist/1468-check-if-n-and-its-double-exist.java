@@ -1,24 +1,13 @@
 class Solution {
     public boolean checkIfExist(int[] arr) {
-        Arrays.sort(arr);
+        HashMap<Integer,Integer> h = new HashMap<>();
+        for(int num:arr)
+            h.put(num,h.getOrDefault(num,0)+1);
         for(int i=0;i<arr.length;i++){
-            if(search(arr,arr[i],i))
+            if(arr[i] == 0 && h.get(arr[i]) == 1)
+                continue;
+            if(h.containsKey(2*arr[i]))
                 return true;
-        }
-        return false;
-    }
-    boolean search(int[] arr, int ele,int index){
-        int low = 0, high = arr.length-1;
-        while(low<=high){
-            int mid = low + (high-low)/2;
-            if(ele == 0 && arr[mid] == 0 && mid!=index)
-                return true;
-            if(arr[mid] == 2*ele && arr[mid]!=0 )
-                return true;
-            else if(arr[mid]>2*ele)
-                high = mid-1;
-            else
-                low = mid+1;
         }
         return false;
     }
