@@ -1,15 +1,15 @@
 class Solution {
     public int reachNumber(int target) {
         target = Math.abs(target);
-        int sum = 0, steps = 0;
+        int sum = 0, i=0;
         while(sum<target){
-            sum+=steps+1;
-            steps++;
+            sum+=i+1;
+            i++;
         }
         while((sum-target)%2!=0){
-            sum+=steps+1;
-            steps++;
+            sum+=i+1;
+            i++;
         }
-        return steps;
+        return i;
     }
 }
