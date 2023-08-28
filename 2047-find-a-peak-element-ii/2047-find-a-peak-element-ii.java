@@ -2,24 +2,18 @@
     public int[] findPeakGrid(int[][] mat) {
         if(mat.length == 1)
             return new int[]{0,max(mat[0])};
-        int rowStart = 0, rowEnd = mat.length-1;
-        while(rowStart<=rowEnd){
-            int mid = rowStart + (rowEnd-rowStart)/2;
-            int index = max(mat[mid]);
-            if(mid == 0){
-                if(mat[mid][index]>mat[mid+1][index])
-                    return new int[]{mid,index};
+        for(int i=0;i<mat.length;i++){
+            int index = max(mat[i]);
+            if(i == 0){
+                if(mat[i][index]>mat[i+1][index])
+                    return new int[]{i,index};
             }
-            if(mid == mat.length-1){
-                if(mat[mid][index]>mat[mid-1][index])
-                    return new int[]{mid,index};
+            if(i == mat.length-1){
+                if(mat[i][index]>mat[i-1][index])
+                    return new int[]{i,index};
             }
-            if(mat[mid][index]>mat[mid+1][index] && mat[mid][index]>mat[mid-1][index])
-                return new int[]{mid,index};
-            if(mat[mid][index]<mat[mid+1][index])
-                rowStart = mid+1;
-            else
-                rowEnd = mid-1;
+            if(mat[i][index]>mat[i+1][index] && mat[i][index]>mat[i-1][index])
+                return new int[]{i,index};
         }
         return null;
     }
