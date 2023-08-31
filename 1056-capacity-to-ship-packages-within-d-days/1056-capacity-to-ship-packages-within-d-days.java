@@ -14,7 +14,7 @@ class Solution {
             else
                 high = mid;
         }
-        return low;
+        return high;
     }
     int fun(int capacity, int[] arr){
         int day = 1, load = 0;
