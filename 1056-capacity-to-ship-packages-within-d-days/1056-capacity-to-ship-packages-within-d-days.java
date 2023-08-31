@@ -7,14 +7,14 @@ class Solution {
             sum+=wt;
         }
         int  low = max, high = sum;
-        while(low<high){
+        while(low<=high){
             int mid = low + (high-low)/2;
             if(fun(mid,weights)>days)
                 low = mid+1;
             else
-                high = mid;
+                high = mid-1;
         }
-        return high;
+        return low;
     }
     int fun(int capacity, int[] arr){
         int day = 1, load = 0;
