@@ -1,28 +1,28 @@
 class Solution {
     public int largestInteger(int num) {
-        int len = (int)(Math.log10(num)+1);
-        int[] arr = new int[len];
-        for(int i=len-1;i>=0;i--){
-            arr[i] = num%10;
+        PriorityQueue<Integer> pqEven = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> pqOdd = new PriorityQueue<>(Collections.reverseOrder());
+        int size = (int)(Math.log10(num)+1);
+        int s = size;
+        int[] arr = new int[size];
+        while(num!=0){
+            int a = num%10;
+            if(a%2 == 0)
+                pqEven.add(a);
+            else
+                pqOdd.add(a);
+            arr[--size] = a;
             num/=10;
         }
-        for(int i=0;i<arr.length-1;i++){
-            for(int j=i+1;j<arr.length;j++){
-                if(arr[i]%2 == 0 && arr[j]%2==0 && arr[j]>arr[i]){
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-                if(arr[i]%2 == 1 && arr[j]%2 == 1 && arr[j]>arr[i]){
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
+        for(int i=0;i<s;i++){
+            if(arr[i]%2 == 0)
+                arr[i] = pqEven.remove();
+            else
+                arr[i] = pqOdd.remove();  
         }
         int ans = 0;
-        for(int i=0;i<len;i++)
-            ans=ans*10+arr[i];
+        for(int i=0;i<s;i++)
+            ans = ans*10 + arr[i];
         return ans;
     }
 }
