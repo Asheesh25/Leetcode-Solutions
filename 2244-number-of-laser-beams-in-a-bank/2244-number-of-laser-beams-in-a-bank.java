@@ -10,17 +10,14 @@ class Solution {
             al.add(count);
         }
         for(int i=0;i<al.size()-1;i++){
-            int count = 0;
             for(int j=i+1;j<al.size();j++){
                 if(al.get(j) == 0)
-                    count++;
+                    continue;
                 else{
                     ans+=al.get(i)*al.get(j);
                     break;
                 }
             }
-            if(count == al.size()-i-1)
-                break;
         }
         return ans;
     }
