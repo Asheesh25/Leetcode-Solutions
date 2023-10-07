@@ -15,18 +15,15 @@ class Solution {
         h.put(900,"CM");
         h.put(1000,"M");
 
-        int[] arr = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
-        String ans = "";
-        while(num!=0) {
-            for (int i = arr.length - 1; i >= 0; i--) {
-                if (num / arr[i] > 0) {
-                    System.out.println(num);
-                    num -= arr[i];
-                    ans += h.get(arr[i]);
-                    break;
-                }
+        int[] arr = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0;i<arr.length && num!=0;i++){
+            while(num>=arr[i]){
+                sb.append(h.get(arr[i]));
+                num-=arr[i];
             }
         }
-        return ans;
+        return sb.toString();
     }
 }
