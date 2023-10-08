@@ -16,14 +16,16 @@ class Solution {
         h.put(1000,"M");
 
         int[] arr = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
-        StringBuilder sb = new StringBuilder();
-
-        for(int i=0;i<arr.length && num!=0;i++){
-            while(num>=arr[i]){
-                sb.append(h.get(arr[i]));
-                num-=arr[i];
+        StringBuilder ans = new StringBuilder();
+        while(num!=0) {
+            for (int i = 0; i < arr.length; i++) {
+                if (num - arr[i] >= 0) {
+                    ans.append(h.get(arr[i]));
+                    num-=arr[i];
+                    break;
+                }
             }
         }
-        return sb.toString();
+        return ans.toString();
     }
 }
